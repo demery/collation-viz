@@ -50,7 +50,7 @@ current form.
 
 The general form of the formula is:
 
- QUIRE_NO[-QUIRE_NO](LEAF_COUNT[,-POSITION[,POSITION,..]])
+    QUIRE_NO[-QUIRE_NO](LEAF_COUNT[,-POSITION[,POSITION,..]])
 
 For example, `1(8,-1,2)` describes a quire of 6 extant leaves. The quire has
 two bifolia followed by two singletons. The two bifolia are positions 3+6,

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quires xmlns:tei="http://www.tei-c.org/ns/1.0">
+<!--Formula: i, 1(8,-1,2), 2(6), 3(10,-1,9), 4(10,-4,8), 5(6,-1,5), 6(6), 7-11(8), 12(8,-8), 13(8), 14(6), 15(8,-8), 16(12,-5,9,12), 17(10,-6,8,10), 18(10,-6,8,10) 19(8,-7), 20-21(8), i-->
+<!--Quire string: 1(8,-1,2), 2(6), 3(10,-1,9), 4(10,-4,8), 5(6,-1,5), 6(6), 7-11(8), 12(8,-8), 13(8), 14(6), 15(8,-8), 16(12,-5,9,12), 17(10,-6,8,10), 18(10,-6,8,10) 19(8,-7), 20-21(8)-->
+<!--Next group of quires: 1(8,-1,2-->
+   <quire n="1" leaves="8,-1,2"/>
+   <!--Next group of quires: 2(6-->
+   <quire n="2" leaves="6"/>
+   <!--Next group of quires: 3(10,-1,9-->
+   <quire n="3" leaves="10,-1,9"/>
+   <!--Next group of quires: 4(10,-4,8-->
+   <quire n="4" leaves="10,-4,8"/>
+   <!--Next group of quires: 5(6,-1,5-->
+   <quire n="5" leaves="6,-1,5"/>
+   <!--Next group of quires: 6(6-->
+   <quire n="6" leaves="6"/>
+   <!--Next group of quires: 7-11(8-->
+   <quire n="7" leaves="8"/>
+   <quire n="8" leaves="8"/>
+   <quire n="9" leaves="8"/>
+   <quire n="10" leaves="8"/>
+   <quire n="11" leaves="8"/>
+   <!--Next group of quires: 12(8,-8-->
+   <quire n="12" leaves="8,-8"/>
+   <!--Next group of quires: 13(8-->
+   <quire n="13" leaves="8"/>
+   <!--Next group of quires: 14(6-->
+   <quire n="14" leaves="6"/>
+   <!--Next group of quires: 15(8,-8-->
+   <quire n="15" leaves="8,-8"/>
+   <!--Next group of quires: 16(12,-5,9,12-->
+   <quire n="16" leaves="12,-5,9,12"/>
+   <!--Next group of quires: 17(10,-6,8,10-->
+   <quire n="17" leaves="10,-6,8,10"/>
+   <!--Next group of quires: 18(10,-6,8,10) 19(8,-7-->
+   <quire n="18" leaves="10,-6,8,10"/>
+   <!--Next group of quires: 20-21(8)-->
+   <quire n="20" leaves="8"/>
+   <quire n="21" leaves="8"/>
+</quires>

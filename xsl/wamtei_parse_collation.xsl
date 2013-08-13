@@ -71,6 +71,9 @@
                         <xsl:with-param name="quire-spec" select="$quire-spec"/>
                     </xsl:call-template>
                 </xsl:attribute>
+                <xsl:call-template name="alterations">
+                    <xsl:with-param name="quire-spec" select="$quire-spec"/>
+                </xsl:call-template>
             </quire>
             <xsl:variable name="next-quire" select="$start-quire + 1" as="xs:double"/>
             <xsl:call-template name="quires">
@@ -84,5 +87,17 @@
     <xsl:template name="leaves">
         <xsl:param name="quire-spec"/>
         <xsl:value-of select="tokenize(normalize-space($quire-spec), ', *')[1]"/>        
+    </xsl:template>
+    
+    <xsl:template name="alterations">
+        <xsl:param name="quire-spec"/>
+        <xsl:variable name="normal-spec" select="replace(normalize-space($quire-spec), '\s+','')"/>
+        <xsl:if test="matches($normal-spec, ',')">
+            <xsl:for-each select="tokenize(substring-after($normal-spec, ','), ',')">
+                <less>
+                    <xsl:value-of select="replace(., '^-', '')"/>
+                </less>
+            </xsl:for-each>
+        </xsl:if>
     </xsl:template>
 </xsl:stylesheet>

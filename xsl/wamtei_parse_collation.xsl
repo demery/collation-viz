@@ -72,10 +72,10 @@
         </xd:desc>
     </xd:doc>
     
-<!--
+    <!--
         TODO: Fix the namespace of output quires structure; now generated under tei:*
-        TODO: Handle both added and subtracted leaves (now only subtracted leaves are dealt with.)
-        
+        TODO: ? Handle both added and subtracted leaves (now only subtracted leaves are dealt with.)
+        May be no need to handle added leaves, we have no cases of this yet.
     -->
     
     <xsl:output indent="yes"/>

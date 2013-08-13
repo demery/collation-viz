@@ -112,6 +112,13 @@
         <xsl:variable name="quire-nos" select="tokenize(.,'\(')[1]"/>
         <xsl:variable name="start" select="number(tokenize($quire-nos,'-')[1])"/>
         <xsl:variable name="tmp_end" select="number(tokenize($quire-nos,'-')[2])"/>
+        <!-- 
+        Quire elements are added by iterating over the quire numbers. For 1-3(8), we iterate
+        over 1, 2, and 3. The iteration depends on an end point. If there is only one quire,
+        the endpoint is the same as the start. When $start == $end one iteration will be 
+        performed. If there's only one quire number, tmp_end will be set to 'NaN'. This 
+        assignment sets end equal to $start if $tmp_end is 'NaN'.
+        -->
         <xsl:variable name="end">
             <xsl:choose>
                 <xsl:when test="string($tmp_end) = 'NaN'">

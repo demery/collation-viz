@@ -88,13 +88,14 @@
                 <xsl:text>Formula: </xsl:text>
                 <xsl:value-of select="$collation"/>
             </xsl:comment>
-            <xsl:variable name="quire-string" select="replace($collation, '^\s*[ivxl]+\s*,\s*|,\s*[ivxl]+$*', '')"/>
+            <!--Get rid of spaces and strip flyleaves-->
+            <xsl:variable name="quire-string" select="replace(replace($collation, '\s+', ''), '^[ivxl]+,|,[ivxl]+$', '')"/>
             <xsl:text>&#xA;</xsl:text>
             <xsl:comment>
                 <xsl:text>Quire string: </xsl:text>
                 <xsl:value-of select="$quire-string"/>
             </xsl:comment>
-            <xsl:for-each select="tokenize($quire-string, '\),\s*')">
+            <xsl:for-each select="tokenize($quire-string, '\),')">
                 <xsl:call-template name="parse-quire-set">
                     <xsl:with-param name="quire-set" select="."/>
                 </xsl:call-template>
@@ -154,14 +155,13 @@
 
     <xsl:template name="parse-positions">
         <xsl:param name="quire-spec"/>
-        <xsl:value-of select="tokenize(normalize-space($quire-spec), ', *')[1]"/>
+        <xsl:value-of select="tokenize($quire-spec, ',')[1]"/>
     </xsl:template>
 
     <xsl:template name="parse-alterations">
         <xsl:param name="quire-spec"/>
-        <xsl:variable name="normal-spec" select="replace(normalize-space($quire-spec), '\s+','')"/>
-        <xsl:if test="matches($normal-spec, ',')">
-            <xsl:for-each select="tokenize(substring-after($normal-spec, ','), ',')">
+        <xsl:if test="matches($quire-spec, ',')">
+            <xsl:for-each select="tokenize(substring-after($quire-spec, ','), ',')">
                 <less>
                     <xsl:value-of select="replace(., '^-', '')"/>
                 </less>

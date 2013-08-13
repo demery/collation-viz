@@ -95,6 +95,7 @@
                 <xsl:text>Quire string: </xsl:text>
                 <xsl:value-of select="$quire-string"/>
             </xsl:comment>
+            <!--Process each set of quire descriptions, here called a quire-set--> 
             <xsl:for-each select="tokenize($quire-string, '\),')">
                 <xsl:call-template name="parse-quire-set">
                     <xsl:with-param name="quire-set" select="."/>
@@ -103,7 +104,8 @@
         </quires>
     </xsl:template>
 
-    
+    <!--Parse quire-set: get quire numbers and the parenthetical description of the set, 
+    the quire-spec.-->
     <xsl:template name="parse-quire-set">
         <xsl:param name="quire-set"/>
         <xsl:text>&#xA;</xsl:text>
@@ -128,6 +130,7 @@
         </xsl:call-template>
     </xsl:template>
 
+    <!--For each quire with the spec, parse the spec and create the <quire> element.-->
     <xsl:template name="parse-quires">
         <xsl:param name="start-quire" as="xs:double"/>
         <xsl:param name="end-quire" as="xs:double"/>
@@ -153,16 +156,19 @@
         </xsl:if>
     </xsl:template>
 
+    <!--Get the number of leaf positions from the quire-spec-->
     <xsl:template name="parse-positions">
         <xsl:param name="quire-spec"/>
         <xsl:value-of select="tokenize($quire-spec, ',')[1]"/>
     </xsl:template>
 
+    <!--Create a <less> element for each subtraction-->
     <xsl:template name="parse-alterations">
         <xsl:param name="quire-spec"/>
         <xsl:if test="matches($quire-spec, ',')">
             <xsl:for-each select="tokenize(substring-after($quire-spec, ','), ',')">
                 <less>
+                    <!--Remove any initial '-'-->
                     <xsl:value-of select="replace(., '^-', '')"/>
                 </less>
             </xsl:for-each>

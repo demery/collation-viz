@@ -66,7 +66,11 @@
         <xsl:if test="$start-quire &lt; ($end-quire + 1)">
             <quire>
                 <xsl:attribute name="n" select="$start-quire"/>
-                <xsl:attribute name="leaves" select="$quire-spec"/>
+                <xsl:attribute name="leaves">
+                    <xsl:call-template name="leaves">
+                        <xsl:with-param name="quire-spec" select="$quire-spec"/>
+                    </xsl:call-template>
+                </xsl:attribute>
             </quire>
             <xsl:variable name="next-quire" select="$start-quire + 1" as="xs:double"/>
             <xsl:call-template name="quires">
@@ -75,5 +79,10 @@
                 <xsl:with-param name="quire-spec" select="$quire-spec"/>
             </xsl:call-template>
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template name="leaves">
+        <xsl:param name="quire-spec"/>
+        <xsl:value-of select="tokenize(normalize-space($quire-spec), ', *')[1]"/>        
     </xsl:template>
 </xsl:stylesheet>

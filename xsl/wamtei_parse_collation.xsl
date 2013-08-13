@@ -51,28 +51,28 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="size" select="tokenize(.,'[()]')[2]"/>
+        <xsl:variable name="quire-spec" select="tokenize(.,'[()]')[2]"/>
         <xsl:call-template name="quires">
             <xsl:with-param name="start-quire" select="$start"/>
             <xsl:with-param name="end-quire" select="$end"/>
-            <xsl:with-param name="quire-size" select="$size"/>
+            <xsl:with-param name="quire-spec" select="$quire-spec"/>
         </xsl:call-template>   
     </xsl:template>
     
     <xsl:template name="quires">
         <xsl:param name="start-quire" as="xs:double"/>
         <xsl:param name="end-quire" as="xs:double"/>
-        <xsl:param name="quire-size"/>
+        <xsl:param name="quire-spec"/>
         <xsl:if test="$start-quire &lt; ($end-quire + 1)">
             <quire>
                 <xsl:attribute name="n" select="$start-quire"/>
-                <xsl:attribute name="leaves" select="$quire-size"/>
+                <xsl:attribute name="leaves" select="$quire-spec"/>
             </quire>
             <xsl:variable name="next-quire" select="$start-quire + 1" as="xs:double"/>
             <xsl:call-template name="quires">
                 <xsl:with-param name="start-quire" select="$next-quire"/>
                 <xsl:with-param name="end-quire" select="$end-quire"/>
-                <xsl:with-param name="quire-size" select="$quire-size"/>
+                <xsl:with-param name="quire-spec" select="$quire-spec"/>
             </xsl:call-template>
         </xsl:if>
     </xsl:template>

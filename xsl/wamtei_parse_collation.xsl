@@ -28,46 +28,35 @@
                 <xsl:value-of select="$quire-string"/>
             </xsl:comment>
             <xsl:for-each select="tokenize($quire-string, '\),\s*')">
-                <xsl:text>&#xA;</xsl:text>
-                <xsl:comment>
-                    <xsl:text>Next group of quires: </xsl:text>
-                    <xsl:value-of select="."/>
-                </xsl:comment>
-                <xsl:text>&#xA;</xsl:text>
-                <xsl:variable name="quire-nos" select="tokenize(.,'\(')[1]"/>
-                <xsl:variable name="start" select="number(tokenize($quire-nos,'-')[1])"/>
-                <xsl:variable name="tmp_end" select="number(tokenize($quire-nos,'-')[2])"/>
-                <xsl:variable name="end">
-                    <xsl:choose>
-                        <xsl:when test="string($tmp_end) = 'NaN'">
-                            <xsl:value-of select="$start"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="$tmp_end"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:variable name="size" select="tokenize(.,'[()]')[2]"/>
-<!--                <xsl:text>&#xA;</xsl:text>
-                <xsl:comment>
-                    <xsl:text>Start: </xsl:text>
-                    <xsl:value-of select="$start"/>
-                    <xsl:text>&#xA;</xsl:text>
-                    <xsl:text>End: </xsl:text>
-                    <xsl:value-of select="$end"/>
-                    <xsl:text>&#xA;</xsl:text>
-                    <xsl:text>Size: </xsl:text>
-                    <xsl:value-of select="$size"/>
-                    <xsl:text>&#xA;</xsl:text>
-                </xsl:comment>-->
-                
-                <xsl:call-template name="quires">
-                    <xsl:with-param name="start-quire" select="$start"/>
-                    <xsl:with-param name="end-quire" select="$end"/>
-                    <xsl:with-param name="quire-size" select="$size"/>
-                </xsl:call-template>                
+                <xsl:call-template name="quire-set">
+                    <xsl:with-param name="quire-set" select="."/>
+                </xsl:call-template>
             </xsl:for-each>
         </quires>
+    </xsl:template>
+    
+    <xsl:template name="quire-set">
+        <xsl:param name="quire-set"/>
+        <xsl:text>&#xA;</xsl:text>
+        <xsl:variable name="quire-nos" select="tokenize(.,'\(')[1]"/>
+        <xsl:variable name="start" select="number(tokenize($quire-nos,'-')[1])"/>
+        <xsl:variable name="tmp_end" select="number(tokenize($quire-nos,'-')[2])"/>
+        <xsl:variable name="end">
+            <xsl:choose>
+                <xsl:when test="string($tmp_end) = 'NaN'">
+                    <xsl:value-of select="$start"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$tmp_end"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="size" select="tokenize(.,'[()]')[2]"/>
+        <xsl:call-template name="quires">
+            <xsl:with-param name="start-quire" select="$start"/>
+            <xsl:with-param name="end-quire" select="$end"/>
+            <xsl:with-param name="quire-size" select="$size"/>
+        </xsl:call-template>   
     </xsl:template>
     
     <xsl:template name="quires">

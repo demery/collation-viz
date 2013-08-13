@@ -28,14 +28,14 @@
                 <xsl:value-of select="$quire-string"/>
             </xsl:comment>
             <xsl:for-each select="tokenize($quire-string, '\),\s*')">
-                <xsl:call-template name="quire-set">
+                <xsl:call-template name="parse-quire-set">
                     <xsl:with-param name="quire-set" select="."/>
                 </xsl:call-template>
             </xsl:for-each>
         </quires>
     </xsl:template>
     
-    <xsl:template name="quire-set">
+    <xsl:template name="parse-quire-set">
         <xsl:param name="quire-set"/>
         <xsl:text>&#xA;</xsl:text>
         <xsl:variable name="quire-nos" select="tokenize(.,'\(')[1]"/>
@@ -52,14 +52,14 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="quire-spec" select="tokenize(.,'[()]')[2]"/>
-        <xsl:call-template name="quires">
+        <xsl:call-template name="parse-quires">
             <xsl:with-param name="start-quire" select="$start"/>
             <xsl:with-param name="end-quire" select="$end"/>
             <xsl:with-param name="quire-spec" select="$quire-spec"/>
         </xsl:call-template>   
     </xsl:template>
     
-    <xsl:template name="quires">
+    <xsl:template name="parse-quires">
         <xsl:param name="start-quire" as="xs:double"/>
         <xsl:param name="end-quire" as="xs:double"/>
         <xsl:param name="quire-spec"/>
@@ -67,16 +67,16 @@
             <quire>
                 <xsl:attribute name="n" select="$start-quire"/>
                 <xsl:attribute name="leaves">
-                    <xsl:call-template name="leaves">
+                    <xsl:call-template name="parse-leaves">
                         <xsl:with-param name="quire-spec" select="$quire-spec"/>
                     </xsl:call-template>
                 </xsl:attribute>
-                <xsl:call-template name="alterations">
+                <xsl:call-template name="parse-alterations">
                     <xsl:with-param name="quire-spec" select="$quire-spec"/>
                 </xsl:call-template>
             </quire>
             <xsl:variable name="next-quire" select="$start-quire + 1" as="xs:double"/>
-            <xsl:call-template name="quires">
+            <xsl:call-template name="parse-quires">
                 <xsl:with-param name="start-quire" select="$next-quire"/>
                 <xsl:with-param name="end-quire" select="$end-quire"/>
                 <xsl:with-param name="quire-spec" select="$quire-spec"/>
@@ -84,12 +84,12 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template name="leaves">
+    <xsl:template name="parse-leaves">
         <xsl:param name="quire-spec"/>
         <xsl:value-of select="tokenize(normalize-space($quire-spec), ', *')[1]"/>        
     </xsl:template>
     
-    <xsl:template name="alterations">
+    <xsl:template name="parse-alterations">
         <xsl:param name="quire-spec"/>
         <xsl:variable name="normal-spec" select="replace(normalize-space($quire-spec), '\s+','')"/>
         <xsl:if test="matches($normal-spec, ',')">

@@ -77,3 +77,8 @@ should be inferred about the history of the quire from this formula. In the
 example above, the quire may have been a quire of 4 bifolia to which the last
 two singletons were later added; the formula is not concerned with this.
 
+# WAM to XML quire XSLT
+
+The file `xsl/wamtei_parse_collation.xsl` takes as input a Walters TEI file
+(see the `data` diretory for examples), and outputs quire XML as shown above.
+

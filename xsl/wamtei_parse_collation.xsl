@@ -61,8 +61,8 @@
                has the following format:
                
                   <quires>
-                      <quire n="1" leaves="8"/>
-                      <quire n="2" leaves="8">
+                      <quire n="1" positions="8"/>
+                      <quire n="2" positions="8">
                           <less>1</less>
                           <less>2</less>
                       </quire>
@@ -134,8 +134,8 @@
         <xsl:if test="$start-quire &lt; ($end-quire + 1)">
             <quire>
                 <xsl:attribute name="n" select="$start-quire"/>
-                <xsl:attribute name="leaves">
-                    <xsl:call-template name="parse-leaves">
+                <xsl:attribute name="positions">
+                    <xsl:call-template name="parse-positions">
                         <xsl:with-param name="quire-spec" select="$quire-spec"/>
                     </xsl:call-template>
                 </xsl:attribute>
@@ -152,7 +152,7 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template name="parse-leaves">
+    <xsl:template name="parse-positions">
         <xsl:param name="quire-spec"/>
         <xsl:value-of select="tokenize(normalize-space($quire-spec), ', *')[1]"/>
     </xsl:template>

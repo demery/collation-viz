@@ -82,6 +82,10 @@
     
     <xsl:template match="/">
         <quires>
+            <xsl:variable name="idno" select="//tei:idno"/>
+            <xsl:attribute name="idno">
+                <xsl:value-of select="replace($idno,'\.','')"/>
+            </xsl:attribute>
             <xsl:variable name="collation" select="//tei:formula"/>
             <xsl:text>&#xA;</xsl:text>
             <xsl:comment>

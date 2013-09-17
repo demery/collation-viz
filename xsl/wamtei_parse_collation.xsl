@@ -3,6 +3,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns="http://www.schoenberginstitute.org/schema/collation"
     exclude-result-prefixes="xs xd"
     version="2.0">
     <xd:doc scope="stylesheet">
@@ -73,7 +74,6 @@
     </xd:doc>
     
     <!--
-        TODO: Fix the namespace of output quires structure; now generated under tei:*
         TODO: ? Handle both added and subtracted leaves (now only subtracted leaves are dealt with.)
         May be no need to handle added leaves, we have no cases of this yet.
     -->
